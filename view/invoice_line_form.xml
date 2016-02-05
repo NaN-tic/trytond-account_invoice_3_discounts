@@ -1,0 +1,22 @@
+<data>
+    <xpath expr="/form/notebook/page/label[@name='discount']"
+        position="replace">
+    </xpath>
+    <xpath expr="/form/notebook/page/group[@id='discount']" position="replace">
+        <label name="discount1"/>
+        <group col="2" id="discount1">
+            <field name="discount1" factor="100" xexpand="0" xfill="0"/>
+            <label name="discount1" string="%" xalign="0.0" xexpand="1" xfill="1"/>
+        </group>
+        <label name="discount2"/>
+        <group col="2" id="discount2">
+            <field name="discount2" factor="100" xexpand="0" xfill="0"/>
+            <label name="discount2" string="%" xalign="0.0" xexpand="1" xfill="1"/>
+        </group>
+        <label name="discount3"/>
+        <group col="2" id="discount3">
+            <field name="discount3" factor="100" xexpand="0" xfill="0"/>
+            <label name="discount3" string="%" xalign="0.0" xexpand="1" xfill="1"/>
+        </group>
+    </xpath>
+</data>
