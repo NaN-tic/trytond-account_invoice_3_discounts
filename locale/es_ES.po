@@ -1,0 +1,19 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.invoice.line,discount1:"
+msgid "Discount 1"
+msgstr "Descuento 1"
+
+msgctxt "field:account.invoice.line,discount2:"
+msgid "Discount 2"
+msgstr "Descuento 2"
+
+msgctxt "field:account.invoice.line,discount3:"
+msgid "Discount 3"
+msgstr "Descuento 3"
+
+msgctxt "view:account.invoice.line:"
+msgid "%"
+msgstr "%"
