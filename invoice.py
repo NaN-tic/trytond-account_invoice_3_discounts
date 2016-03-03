@@ -11,7 +11,11 @@ STATES = {
     'invisible': Eval('type') != 'line',
     'required': Eval('type') == 'line',
     }
-DEPENDS = ['type']
+# Important to add 'discount' in DEPENDS so a view can be created with only
+# discounts 1, 2 & 3, and 'discount' will be loaded too. Otherwise it will not
+# work correctly unless the person who creates the view adds 'discount'
+# manually.
+DEPENDS = ['type', 'discount']
 _ZERO = Decimal(0)
 
 
@@ -52,7 +56,7 @@ class InvoiceLine:
         discount3 = self.discount3 or Decimal(0)
         self.discount = 1 - ((1 - discount1) * (1 - discount2) * (1 -
                 discount3))
-        digits = self.__class__.discount.digits[1]                   
+        digits = self.__class__.discount.digits[1]
         self.discount = self.discount.quantize(Decimal(str(10.0 ** -digits)))
         res = super(InvoiceLine, self).update_prices()
         res['discount'] = self.discount
