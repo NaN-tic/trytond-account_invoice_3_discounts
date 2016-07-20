@@ -3,7 +3,7 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 from trytond.pyson import Eval
 from trytond.config import config
-DISCOUNT_DIGITS = int(config.get('digits', 'discount_digits', 4))
+DISCOUNT_DIGITS = (16, config.getint('product', 'price_decimal', default=4))
 
 __all__ = ['InvoiceLine']
 
@@ -18,11 +18,11 @@ _ZERO = Decimal(0)
 class InvoiceLine:
     __name__ = 'account.invoice.line'
     __metaclass__ = PoolMeta
-    discount1 = fields.Numeric('Discount 1', digits=(16, DISCOUNT_DIGITS),
+    discount1 = fields.Numeric('Discount 1', digits=DISCOUNT_DIGITS,
         states=STATES, depends=DEPENDS)
-    discount2 = fields.Numeric('Discount 2', digits=(16, DISCOUNT_DIGITS),
+    discount2 = fields.Numeric('Discount 2', digits=DISCOUNT_DIGITS,
         states=STATES, depends=DEPENDS)
-    discount3 = fields.Numeric('Discount 3', digits=(16, DISCOUNT_DIGITS),
+    discount3 = fields.Numeric('Discount 3', digits=DISCOUNT_DIGITS,
         states=STATES, depends=DEPENDS)
 
     @classmethod
