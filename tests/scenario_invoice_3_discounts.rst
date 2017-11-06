@@ -214,6 +214,8 @@ Create invoice::
     Decimal('20.00')
     >>> invoice.total_amount
     Decimal('228.55')
+    >>> line.discount == Decimal('0.5725')
+    True
 
 Credit invoice with refund::
 
@@ -229,3 +231,14 @@ Credit invoice with refund::
     Decimal('20.00')
     >>> invoice.total_amount
     Decimal('228.55')
+
+    >>> invoice_credit, = Invoice.find([('type', '=', 'out_credit_note')])
+    >>> line1, line2 = invoice_credit.lines
+    >>> line2.discount == Decimal('0.5725')
+    True
+    >>> line.discount1 == Decimal('0.5')
+    True
+    >>> line.discount2 == Decimal('0.1')
+    True
+    >>> line.discount3 == Decimal('0.05')
+    True
