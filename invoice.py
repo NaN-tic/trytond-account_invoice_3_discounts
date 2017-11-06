@@ -70,3 +70,10 @@ class InvoiceLine:
         methods=['discount'])
     def on_change_discount3(self):
         self.update_prices()
+
+    def _credit(self):
+        '''Add discount1, discount2 and discount 3 to credit line'''
+        res = super(InvoiceLine, self)._credit()
+        for field in ('discount1', 'discount2', 'discount3'):
+            res[field] = getattr(self, field)
+        return res
