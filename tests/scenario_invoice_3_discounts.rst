@@ -129,6 +129,8 @@ Create invoice::
     Decimal('20.00')
     >>> invoice.total_amount
     Decimal('228.55')
+    >>> line2.discount == Decimal('0.5725')
+    True
 
 Credit invoice with refund::
 
@@ -144,3 +146,15 @@ Credit invoice with refund::
     Decimal('20.00')
     >>> invoice.total_amount
     Decimal('228.55')
+
+    >>> invoice_credit, = Invoice.find(
+    ...     [('type', '=', 'out'), ('untaxed_amount', '<', 0)])
+    >>> line1, line2 = invoice_credit.lines
+    >>> line2.discount == Decimal('0.5725')
+    True
+    >>> line2.discount1 == Decimal('0.5')
+    True
+    >>> line2.discount2 == Decimal('0.1')
+    True
+    >>> line2.discount3 == Decimal('0.05')
+    True
