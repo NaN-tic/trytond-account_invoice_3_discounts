@@ -25,15 +25,6 @@ class InvoiceLine:
     discount3 = fields.Numeric('Discount 3', digits=DISCOUNT_DIGITS,
         states=STATES, depends=DEPENDS)
 
-    @classmethod
-    def __setup__(cls):
-        super(InvoiceLine, cls).__setup__()
-        discounts = set(['discount1', 'discount2', 'discount3'])
-        cls.amount.on_change_with |= discounts
-        cls.product.on_change |= discounts
-        cls.gross_unit_price.on_change |= discounts
-        cls.discount.on_change |= discounts
-
     @staticmethod
     def default_discount1():
         return 0
@@ -57,23 +48,39 @@ class InvoiceLine:
         super(InvoiceLine, self).update_prices()
 
     @fields.depends('discount1', 'discount2', 'discount3',
-        methods=['discount'])
+        'gross_unit_price', 'discount', 'unit_price')
     def on_change_discount1(self):
         self.update_prices()
 
     @fields.depends('discount1', 'discount2', 'discount3',
-        methods=['discount'])
+        'gross_unit_price', 'discount', 'unit_price')
     def on_change_discount2(self):
         self.update_prices()
 
     @fields.depends('discount1', 'discount2', 'discount3',
-        methods=['discount'])
+        'gross_unit_price', 'discount', 'unit_price')
     def on_change_discount3(self):
         self.update_prices()
 
+    @fields.depends('discount1', 'discount2', 'discount3')
+    def on_change_discount(self):
+        super(InvoiceLine, self).on_change_discount()
+
+    @fields.depends('discount1', 'discount2', 'discount3')
+    def on_change_gross_unit_price(self):
+        super(InvoiceLine, self).on_change_gross_unit_price()
+
+    @fields.depends('discount1', 'discount2', 'discount3')
+    def on_change_product(self):
+        super(InvoiceLine, self).on_change_product()
+
+    @fields.depends('discount1', 'discount2', 'discount3')
+    def on_change_with_amount(self):
+        return super(InvoiceLine, self).on_change_with_amount()
+
     def _credit(self):
         '''Add discount1, discount2 and discount 3 to credit line'''
-        res = super(InvoiceLine, self)._credit()
+        credit = super(InvoiceLine, self)._credit()
         for field in ('discount1', 'discount2', 'discount3'):
-            res[field] = getattr(self, field)
-        return res
+            setattr(credit, field, getattr(self, field))
+        return credit

@@ -1,13 +1,13 @@
 <data>
     <xpath expr="/tree/field[@name='discount']" position="after">
         <field name="discount1" factor="100">
-            <suffix string="%"/>
+            <suffix name="discount1" string="%"/>
         </field>
         <field name="discount2" factor="100">
-            <suffix string="%"/>
+            <suffix name="discount2" string="%"/>
         </field>
         <field name="discount3" factor="100">
-            <suffix string="%"/>
+            <suffix name="discount3" string="%"/>
         </field>
     </xpath>
 </data>
