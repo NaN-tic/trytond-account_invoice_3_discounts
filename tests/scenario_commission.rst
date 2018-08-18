@@ -138,7 +138,7 @@ Post invoice::
     >>> [c.amount for c in line.commissions]
     [Decimal('10.0000'), Decimal('10.0000')]
     >>> [c.invoice_state for c in line.commissions]
-    [u'', u'']
+    ['', '']
 
 Create commission invoices::
 

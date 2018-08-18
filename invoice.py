@@ -17,9 +17,8 @@ DEPENDS = ['type']
 _ZERO = Decimal(0)
 
 
-class InvoiceLine:
+class InvoiceLine(metaclass=PoolMeta):
     __name__ = 'account.invoice.line'
-    __metaclass__ = PoolMeta
     discount1 = fields.Numeric('Discount 1', digits=DISCOUNT_DIGITS,
         states=STATES, depends=DEPENDS)
     discount2 = fields.Numeric('Discount 2', digits=DISCOUNT_DIGITS,

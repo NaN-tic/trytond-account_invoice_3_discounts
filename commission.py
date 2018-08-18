@@ -2,9 +2,8 @@
 # this repository contains the full copyright notices and license terms.
 from trytond.pool import PoolMeta
 
-class Commission:
+class Commission(metaclass=PoolMeta):
     __name__ = 'commission'
-    __metaclass__ = PoolMeta
 
     @classmethod
     def _get_invoice_line(cls, key, invoice, commissions):

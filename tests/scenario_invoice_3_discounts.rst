@@ -126,7 +126,7 @@ Create invoice::
     >>> Invoice.post([invoice.id], config.context)
     >>> invoice.reload()
     >>> invoice.state
-    u'posted'
+    'posted'
     >>> invoice.untaxed_amount
     Decimal('208.55')
     >>> invoice.tax_amount
@@ -143,7 +143,7 @@ Credit invoice with refund::
     >>> credit.execute('credit')
     >>> invoice.reload()
     >>> invoice.state
-    u'paid'
+    'paid'
     >>> invoice.untaxed_amount
     Decimal('208.55')
     >>> invoice.tax_amount
