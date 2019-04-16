@@ -142,8 +142,6 @@ Credit invoice with refund::
     >>> credit.form.with_refund = True
     >>> credit.execute('credit')
     >>> invoice.reload()
-    >>> invoice.state
-    'paid'
     >>> invoice.untaxed_amount
     Decimal('208.55')
     >>> invoice.tax_amount
