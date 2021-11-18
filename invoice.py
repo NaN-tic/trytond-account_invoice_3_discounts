@@ -76,6 +76,10 @@ class InvoiceLine(metaclass=PoolMeta):
         super(InvoiceLine, self).on_change_product()
 
     @fields.depends('discount1', 'discount2', 'discount3')
+    def on_change_quantity(self):
+        super(InvoiceLine, self).on_change_quantity()
+
+    @fields.depends('discount1', 'discount2', 'discount3')
     def on_change_with_amount(self):
         return super(InvoiceLine, self).on_change_with_amount()
 
