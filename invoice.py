@@ -38,6 +38,8 @@ class InvoiceLine(metaclass=PoolMeta):
     def default_discount3():
         return 0
 
+    @fields.depends('discount1', 'discount2', 'discount3',
+        'gross_unit_price', 'discount', 'unit_price')
     def update_prices(self):
         discount1 = self.discount1 or Decimal(0)
         discount2 = self.discount2 or Decimal(0)
@@ -48,18 +50,15 @@ class InvoiceLine(metaclass=PoolMeta):
         self.discount = self.discount.quantize(Decimal(str(10.0 ** -digits)))
         super(InvoiceLine, self).update_prices()
 
-    @fields.depends('discount1', 'discount2', 'discount3',
-        'gross_unit_price', 'discount', 'unit_price')
+    @fields.depends(methods=['update_prices'])
     def on_change_discount1(self):
         self.update_prices()
 
-    @fields.depends('discount1', 'discount2', 'discount3',
-        'gross_unit_price', 'discount', 'unit_price')
+    @fields.depends(methods=['update_prices'])
     def on_change_discount2(self):
         self.update_prices()
 
-    @fields.depends('discount1', 'discount2', 'discount3',
-        'gross_unit_price', 'discount', 'unit_price')
+    @fields.depends(methods=['update_prices'])
     def on_change_discount3(self):
         self.update_prices()
 
