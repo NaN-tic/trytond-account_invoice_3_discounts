@@ -114,8 +114,8 @@ Create invoice::
     >>> line2.discount1 = Decimal('.5')
     >>> line2.discount2 = Decimal('.1')
     >>> line2.discount3 = Decimal('.05')
-    >>> line2.unit_price
-    Decimal('8.55000000')
+    >>> line2.unit_price == Decimal('8.55000000')
+    True
     >>> invoice.untaxed_amount
     Decimal('208.55')
     >>> invoice.tax_amount
