@@ -13,18 +13,17 @@ STATES = {
     'invisible': Eval('type') != 'line',
     'required': Eval('type') == 'line',
     }
-DEPENDS = ['type']
 _ZERO = Decimal(0)
 
 
 class InvoiceLine(metaclass=PoolMeta):
     __name__ = 'account.invoice.line'
     discount1 = fields.Numeric('Discount 1', digits=DISCOUNT_DIGITS,
-        states=STATES, depends=DEPENDS)
+        states=STATES)
     discount2 = fields.Numeric('Discount 2', digits=DISCOUNT_DIGITS,
-        states=STATES, depends=DEPENDS)
+        states=STATES)
     discount3 = fields.Numeric('Discount 3', digits=DISCOUNT_DIGITS,
-        states=STATES, depends=DEPENDS)
+        states=STATES)
 
     @staticmethod
     def default_discount1():
