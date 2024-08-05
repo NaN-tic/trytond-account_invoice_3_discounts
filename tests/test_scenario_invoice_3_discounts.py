@@ -1,7 +1,7 @@
 import unittest
 from decimal import Decimal
 
-from proteus import Model, Wizard, config
+from proteus import Model, Wizard
 from trytond.modules.account.tests.tools import (create_chart,
                                                  create_fiscalyear, create_tax,
                                                  create_tax_code, get_accounts)
@@ -23,8 +23,6 @@ class Test(unittest.TestCase):
         super().tearDown()
 
     def test(self):
-
-        # Imports
 
         # Install account_invoice_3_discounts
         config = activate_modules('account_invoice_3_discounts')
