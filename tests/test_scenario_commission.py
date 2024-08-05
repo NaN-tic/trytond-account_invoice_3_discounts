@@ -24,8 +24,6 @@ class Test(unittest.TestCase):
 
     def test(self):
 
-        # Imports
-
         # Install commission
         activate_modules(['commission', 'account_invoice_3_discounts'])
 
